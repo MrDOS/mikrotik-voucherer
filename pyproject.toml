@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mikrotik-voucherer"
+dynamic = ["version"]
+authors = [{name = "Samuel Coleman", email = "samuel@seenet.ca"}]
+readme = "README.rst"
+
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "License :: OSI Approved :: GNU Affero General Public License v3",
+    "Topic :: Office/Business :: Financial :: Point-Of-Sale",
+    "Topic :: System :: Systems Administration :: Authentication/Directory",
+]
+
+dependencies = [
+    "rstr",
+]
+
+[project.optional-dependencies]
+dev = [
+    "mypy",
+]
+
+[project.scripts]
+mikrotik-voucherer = "voucherer:main"
+
+[tool.setuptools.dynamic]
+version = {file = ["VERSION"]}
