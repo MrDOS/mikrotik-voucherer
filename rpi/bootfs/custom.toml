@@ -1,0 +1,26 @@
+config_version = 1
+
+[system]
+hostname = "mikrotik-voucherer"
+
+[user]
+name = "mikrotik-voucherer"
+# “mikrotik-voucherer”
+password = "$5$MLhQcJ83Y6FBr81y$2HdVrrfkzzwfSciJu28TJueb4OTdpotILKC7bPQ4sb9"
+password_encrypted = true
+
+[ssh]
+enabled = true
+password_authentication = false
+authorized_keys = ["ssh-ed25519 ... you@hostname"]
+
+[wlan]
+ssid = "Some network"
+password = "Some passphrase"
+password_encrypted = false
+hidden = false
+country = "GB"
+
+[locale]
+keymap = "US"
+timezone = "Europe/London"
