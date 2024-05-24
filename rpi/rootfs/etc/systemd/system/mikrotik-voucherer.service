@@ -1,0 +1,12 @@
+[Unit]
+Description=MikroTik Voucherer
+After=network.target
+
+[Service]
+User=mikrotik-voucherer
+Group=mikrotik-voucherer
+EnvironmentFile=/etc/mikrotik-voucherer
+ExecStart=mikrotik-voucherer serve --identity ${VOUCHERER_IDENTITY} --username ${VOUCHERER_USERNAME} --password ${VOUCHERER_PASSWORD}
+
+[Install]
+WantedBy=multi-user.target
