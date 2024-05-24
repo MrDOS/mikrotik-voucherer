@@ -35,7 +35,7 @@ class RouterOSDevice(object):
             ctx = ssl.create_default_context()
             ctx.check_hostname = False
             ctx.verify_mode = ssl.CERT_NONE
-            ctx.set_ciphers('ADH-AES128-SHA256:@SECLEVEL=0')
+            ctx.set_ciphers('ADH:@SECLEVEL=0')
             self.sock = ctx.wrap_socket(self.sock)
 
         self.sock.connect(sockaddr)
