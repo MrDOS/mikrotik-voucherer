@@ -6,6 +6,7 @@ import posix
 import socket
 import ssl
 import sys
+from typing import Union
 
 DISCOVERY_PORT = 5678
 DISCOVERY_TIMEOUT = 5
@@ -22,7 +23,7 @@ class RouterOSDevice(object):
     """
     sock: socket.socket
 
-    def __init__(self, address: str, port: [int, None]=None, secure=True):
+    def __init__(self, address: str, port: Union[int, None]=None, secure=True):
         if port is None:
             port = API_PORT_SECURE if secure else API_PORT
 
@@ -191,10 +192,11 @@ class RouterOSDevice(object):
             ret += s.decode(sys.stdout.encoding, "replace")
         return ret
 
-def find(identity: str):
+def find(identity: Union[str, bytes]):
     """Find the IP address of a device from its LLDP-advertised identity."""
 
-    identity = bytes(identity, 'UTF-8')
+    if isinstance(identity, str):
+        identity = identity.encode()
 
     with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as sock:
         sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
