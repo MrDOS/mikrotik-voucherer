@@ -29,3 +29,6 @@ mikrotik-voucherer = "voucherer:main"
 
 [tool.setuptools.dynamic]
 version = {file = ["VERSION"]}
+
+[tool.setuptools.packages.find]
+include = ["voucherer"]
