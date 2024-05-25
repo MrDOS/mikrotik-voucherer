@@ -117,17 +117,18 @@ def serve(args):
         except KeyboardInterrupt:
             return
 
-        while True:
-            buffer = conn.recv(COMMAND_BUFFER_SIZE)
-            if len(buffer) == 0:
-                # Connection dropped.
-                break
+        with conn:
+            while True:
+                buffer = conn.recv(COMMAND_BUFFER_SIZE)
+                if len(buffer) == 0:
+                    # Connection dropped.
+                    break
 
-            command = buffer.decode().strip()
+                command = buffer.decode().strip()
 
-            if command == COMMAND_GENERATE:
-                creds = credentials.generate(args.username_template, args.password_template)
-                conn.send(json.dumps(creds.__dict__).encode())
+                if command == COMMAND_GENERATE:
+                    creds = credentials.generate(args.username_template, args.password_template)
+                    conn.send(json.dumps(creds.__dict__).encode())
 
 def generate(args):
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
